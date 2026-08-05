@@ -1,0 +1,254 @@
+/* ==========================================================
+   NovaAI
+   Premium Emoji Picker
+========================================================== */
+
+/* ==========================================================
+   CONTAINER
+========================================================== */
+
+.emoji-container{
+
+    position:relative;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+}
+
+/* ==========================================================
+   PANEL
+========================================================== */
+
+.emoji-panel{
+
+    position:absolute;
+
+    bottom:110px;
+
+    left:0;
+
+    width:420px;
+
+    max-height:320px;
+
+    overflow-y:auto;
+
+    padding:20px;
+
+    display:grid;
+
+    grid-template-columns:repeat(8,1fr);
+
+    gap:12px;
+
+    background:rgba(255,255,255,.22);
+
+    backdrop-filter:blur(30px);
+
+    -webkit-backdrop-filter:blur(30px);
+
+    border:1px solid rgba(255,255,255,.28);
+
+    border-radius:28px;
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.18),
+        0 0 40px rgba(79,70,229,.12);
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transform:
+        translateY(18px)
+        scale(.92);
+
+    transition:
+        opacity .30s ease,
+        transform .30s ease,
+        visibility .30s;
+
+    z-index:9999;
+
+}
+
+/* ==========================================================
+   OPEN
+========================================================== */
+
+.emoji-panel.show{
+
+    opacity:1;
+
+    visibility:visible;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+    animation:emojiPopup .28s ease;
+
+}
+
+/* ==========================================================
+   EMOJI BUTTON
+========================================================== */
+
+.emoji-item{
+
+    width:46px;
+
+    height:46px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border:none;
+
+    border-radius:14px;
+
+    background:transparent;
+
+    cursor:pointer;
+
+    font-size:30px;
+
+    transition:.22s ease;
+
+}
+
+/* ==========================================================
+   HOVER
+========================================================== */
+
+.emoji-item:hover{
+
+    background:rgba(255,255,255,.35);
+
+    transform:scale(1.20);
+
+    box-shadow:
+        0 8px 18px rgba(79,70,229,.18);
+
+}
+
+/* ==========================================================
+   CLICK
+========================================================== */
+
+.emoji-item:active{
+
+    transform:scale(.92);
+
+}
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+.emoji-panel::-webkit-scrollbar{
+
+    width:8px;
+
+}
+
+.emoji-panel::-webkit-scrollbar-thumb{
+
+    background:rgba(79,70,229,.35);
+
+    border-radius:50px;
+
+}
+
+.emoji-panel::-webkit-scrollbar-thumb:hover{
+
+    background:rgba(79,70,229,.60);
+
+}
+
+/* ==========================================================
+   DARK MODE
+========================================================== */
+
+body.dark .emoji-panel{
+
+    background:rgba(20,24,40,.90);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    box-shadow:
+        0 25px 60px rgba(0,0,0,.50),
+        0 0 40px rgba(139,92,246,.15);
+
+}
+
+body.dark .emoji-item:hover{
+
+    background:rgba(255,255,255,.08);
+
+}
+
+/* ==========================================================
+   ANIMATION
+========================================================== */
+
+@keyframes emojiPopup{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(18px)
+            scale(.90);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media(max-width:768px){
+
+    .emoji-panel{
+
+        width:320px;
+
+        left:-20px;
+
+        bottom:100px;
+
+        grid-template-columns:repeat(6,1fr);
+
+    }
+
+    .emoji-item{
+
+        width:42px;
+
+        height:42px;
+
+        font-size:28px;
+
+    }
+
+}

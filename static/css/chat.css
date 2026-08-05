@@ -1,0 +1,599 @@
+/* ==========================================================
+   NovaAI
+   Chat Styles
+   Version : 3.0
+========================================================== */
+
+/* ==========================================================
+   CHAT WRAPPERS
+========================================================== */
+
+.bot,
+.user{
+
+    display:flex;
+
+    align-items:flex-start;
+
+    gap:18px;
+
+    width:100%;
+
+    animation:messageFade .35s ease;
+
+}
+
+.user{
+
+    justify-content:flex-end;
+
+}
+
+/* ==========================================================
+   BOT AVATAR
+========================================================== */
+
+.bot img{
+
+    width:72px;
+
+    height:72px;
+
+    border-radius:50%;
+
+    object-fit:cover;
+
+    background:#fff;
+
+    padding:5px;
+
+    flex-shrink:0;
+
+    box-shadow:
+        0 12px 30px rgba(0,0,0,.15);
+
+}
+
+/* ==========================================================
+   CHAT BUBBLES
+========================================================== */
+
+.bubble{
+
+    max-width:78%;
+
+    padding:28px 34px;
+
+    border-radius:28px;
+
+    line-height:1.8;
+
+    word-break:break-word;
+
+    backdrop-filter:blur(12px);
+
+    -webkit-backdrop-filter:blur(12px);
+
+    box-shadow:
+        0 14px 35px rgba(0,0,0,.10);
+
+    position:relative;
+
+}
+
+/* ==========================================================
+   BOT MESSAGE
+========================================================== */
+
+.bot .bubble{
+
+    background:var(--bubble-bot);
+
+    color:var(--text);
+
+    border-top-left-radius:8px;
+
+}
+
+/* ==========================================================
+   USER MESSAGE
+========================================================== */
+
+.user .bubble{
+
+    background:var(--bubble-user);
+
+    color:white;
+
+    border-top-right-radius:8px;
+
+}
+
+/* ==========================================================
+   HEADING
+========================================================== */
+
+.bubble h3{
+
+    font-size:1.75rem;
+
+    font-weight:700;
+
+    margin-bottom:14px;
+
+}
+
+/* ==========================================================
+   MESSAGE TEXT
+========================================================== */
+
+.bubble p{
+
+    font-size:25px;
+
+    font-weight:500;
+
+    line-height:1.8;
+
+    color:inherit;
+
+}
+
+/* ==========================================================
+   MESSAGE FOOTER
+========================================================== */
+
+.message-footer{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    align-items:center;
+
+    gap:12px;
+
+    margin-top:18px;
+
+}
+
+/* ==========================================================
+   TIMESTAMP
+========================================================== */
+
+.time{
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:var(--text-light);
+
+    opacity:.85;
+
+    user-select:none;
+
+}
+
+.user .time{
+
+    color:rgba(255,255,255,.90);
+
+}
+
+/* ==========================================================
+   COPY BUTTON
+========================================================== */
+
+.copy-btn{
+
+    width:34px;
+
+    height:34px;
+
+    border:none;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    background:transparent;
+
+    color:var(--text-light);
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    transition:.25s ease;
+
+}
+
+.copy-btn:hover{
+
+    background:rgba(79,70,229,.12);
+
+    color:var(--primary);
+
+    transform:scale(1.10);
+
+}
+
+.user .copy-btn{
+
+    display:none;
+
+}
+/* ==========================================================
+   CODE BLOCKS
+========================================================== */
+
+.bubble pre{
+
+    margin-top:18px;
+
+    padding:20px;
+
+    border-radius:18px;
+
+    background:#0F172A;
+
+    overflow-x:auto;
+
+    color:#E2E8F0;
+
+    font-size:17px;
+
+    line-height:1.7;
+
+    box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,.05);
+
+}
+
+.bubble code{
+
+    font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+    font-size:16px;
+
+}
+
+.bubble p code{
+
+    padding:3px 8px;
+
+    border-radius:8px;
+
+    background:rgba(79,70,229,.10);
+
+    color:var(--primary);
+
+}
+
+/* ==========================================================
+   LINKS
+========================================================== */
+
+.bubble a{
+
+    color:#2563EB;
+
+    font-weight:700;
+
+    text-decoration:none;
+
+    transition:.25s;
+
+}
+
+.bubble a:hover{
+
+    text-decoration:underline;
+
+}
+
+/* ==========================================================
+   LISTS
+========================================================== */
+
+.bubble ul,
+.bubble ol{
+
+    margin-top:16px;
+
+    margin-left:28px;
+
+}
+
+.bubble li{
+
+    margin:10px 0;
+
+    font-size:22px;
+
+    line-height:1.7;
+
+}
+
+/* ==========================================================
+   BLOCKQUOTE
+========================================================== */
+
+.bubble blockquote{
+
+    margin-top:18px;
+
+    padding:14px 20px;
+
+    border-left:5px solid var(--primary);
+
+    background:rgba(79,70,229,.08);
+
+    border-radius:12px;
+
+    font-style:italic;
+
+}
+
+/* ==========================================================
+   TABLE
+========================================================== */
+
+.bubble table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+
+}
+
+.bubble th,
+.bubble td{
+
+    border:1px solid rgba(0,0,0,.08);
+
+    padding:12px;
+
+    text-align:left;
+
+}
+
+.bubble th{
+
+    background:rgba(79,70,229,.10);
+
+}
+
+/* ==========================================================
+   TYPING INDICATOR
+========================================================== */
+
+#typing{
+
+    display:none;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-left:90px;
+
+    margin-bottom:20px;
+
+}
+
+#typing::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:76px;
+
+    height:46px;
+
+    border-radius:24px;
+
+    background:white;
+
+    z-index:-1;
+
+}
+
+.dot{
+
+    width:10px;
+
+    height:10px;
+
+    border-radius:50%;
+
+    background:var(--primary);
+
+    animation:typing 1.3s infinite;
+
+}
+
+.dot:nth-child(2){
+
+    animation-delay:.2s;
+
+}
+
+.dot:nth-child(3){
+
+    animation-delay:.4s;
+
+}
+
+/* ==========================================================
+   CHAT ANIMATION
+========================================================== */
+
+@keyframes messageFade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+@keyframes typing{
+
+    0%,
+    80%,
+    100%{
+
+        transform:scale(.5);
+
+        opacity:.35;
+
+    }
+
+    40%{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+
+/* ==========================================================
+   CHAT AREA
+========================================================== */
+
+#chatArea{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:26px;
+
+    scrollbar-width:thin;
+
+}
+
+#chatArea::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+#chatArea::-webkit-scrollbar-thumb{
+
+    background:#CBD5E1;
+
+    border-radius:50px;
+
+}
+
+#chatArea::-webkit-scrollbar-thumb:hover{
+
+    background:#A5B4FC;
+
+}
+
+/* ==========================================================
+   DARK MODE
+========================================================== */
+
+body.dark .bubble pre{
+
+    background:#020617;
+
+}
+
+body.dark .bubble p code{
+
+    background:rgba(255,255,255,.08);
+
+    color:#C4B5FD;
+
+}
+
+body.dark .copy-btn{
+
+    color:#CBD5E1;
+
+}
+
+body.dark .copy-btn:hover{
+
+    background:rgba(255,255,255,.10);
+
+    color:#FFFFFF;
+
+}
+
+body.dark #typing::before{
+
+    background:#1E293B;
+
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media(max-width:768px){
+
+    .bubble{
+
+        max-width:92%;
+
+        padding:22px 24px;
+
+    }
+
+    .bubble p{
+
+        font-size:20px;
+
+    }
+
+    .bubble h3{
+
+        font-size:1.4rem;
+
+    }
+
+    .bot img{
+
+        width:56px;
+
+        height:56px;
+
+    }
+
+    .message-footer{
+
+        margin-top:14px;
+
+    }
+
+}

@@ -1,0 +1,551 @@
+/* ==========================================================
+   NovaAI
+   Responsive Stylesheet
+   ----------------------------------------------------------
+   Desktop First Design
+   Breakpoints:
+   • 1400px
+   • 1200px
+   • 992px
+   • 768px
+   • 576px
+========================================================== */
+
+
+/* ==========================================================
+   LARGE DESKTOP
+========================================================== */
+
+@media (max-width:1400px){
+
+.container{
+
+    width:98vw;
+
+}
+
+.bubble{
+
+    max-width:78%;
+
+}
+
+}
+
+
+/* ==========================================================
+   LAPTOP
+========================================================== */
+
+@media (max-width:1200px){
+
+header{
+
+    padding:0 25px;
+
+}
+
+#chatArea{
+
+    padding:30px;
+
+}
+
+.left h2{
+
+    font-size:2rem;
+
+}
+
+.logo{
+
+    width:80px;
+
+    height:80px;
+
+}
+
+#message{
+
+    font-size:20px;
+
+}
+
+.bubble{
+
+    max-width:82%;
+
+}
+
+}
+
+
+/* ==========================================================
+   TABLET
+========================================================== */
+
+@media (max-width:992px){
+
+.container{
+
+    width:100vw;
+
+    height:100vh;
+
+    margin:0;
+
+    border-radius:0;
+
+}
+
+header{
+
+    height:95px;
+
+    padding:0 20px;
+
+}
+
+.logo{
+
+    width:70px;
+
+    height:70px;
+
+}
+
+.left h2{
+
+    font-size:1.8rem;
+
+}
+
+.left p{
+
+    font-size:1rem;
+
+}
+
+#clock{
+
+    font-size:1rem;
+
+}
+
+#chatArea{
+
+    padding:24px;
+
+    gap:28px;
+
+}
+
+.bubble{
+
+    max-width:88%;
+
+    padding:22px 26px;
+
+}
+
+.bubble h3{
+
+    font-size:1.6rem;
+
+}
+
+.bubble p{
+
+    font-size:20px;
+
+}
+
+#message{
+
+    height:76px;
+
+    font-size:20px;
+
+}
+
+#themeBtn,
+#emoji,
+#voice,
+#send{
+
+    width:72px;
+
+    height:72px;
+
+    min-width:72px;
+
+}
+
+#themeBtn{
+
+    font-size:34px;
+
+}
+
+#emoji{
+
+    font-size:36px;
+
+}
+
+#voice{
+
+    font-size:36px;
+
+}
+
+#send i{
+
+    font-size:30px;
+
+}
+
+.toolbar{
+
+    flex-wrap:wrap;
+
+}
+
+.toolbar button{
+
+    width:100%;
+
+}
+
+}
+
+
+/* ==========================================================
+   MOBILE
+========================================================== */
+
+@media (max-width:768px){
+
+header{
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    gap:12px;
+
+    height:auto;
+
+    padding:18px;
+
+}
+
+.left{
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+.right{
+
+    width:100%;
+
+    justify-content:center;
+
+}
+
+.logo{
+
+    width:64px;
+
+    height:64px;
+
+}
+
+.left h2{
+
+    font-size:1.6rem;
+
+}
+
+#chatArea{
+
+    padding:18px;
+
+}
+
+.bot img{
+
+    width:60px;
+
+    height:60px;
+
+}
+
+.bubble{
+
+    max-width:95%;
+
+    padding:20px;
+
+}
+
+.bubble h3{
+
+    font-size:1.4rem;
+
+}
+
+.bubble p{
+
+    font-size:18px;
+
+}
+
+footer{
+
+    gap:12px;
+
+    padding:16px;
+
+}
+
+#message{
+
+    height:66px;
+
+    font-size:18px;
+
+    padding:0 22px;
+
+}
+
+#themeBtn,
+#emoji,
+#voice,
+#send{
+
+    width:64px;
+
+    height:64px;
+
+    min-width:64px;
+
+}
+
+#themeBtn{
+
+    font-size:30px;
+
+}
+
+#emoji{
+
+    font-size:32px;
+
+}
+
+#voice{
+
+    font-size:32px;
+
+}
+
+#send i{
+
+    font-size:26px;
+
+}
+
+.toolbar{
+
+    padding:14px;
+
+}
+
+.toolbar button{
+
+    min-height:60px;
+
+    font-size:18px;
+
+}
+
+}
+
+
+/* ==========================================================
+   SMALL MOBILE
+========================================================== */
+
+@media (max-width:576px){
+
+.left{
+
+    gap:12px;
+
+}
+
+.logo{
+
+    width:56px;
+
+    height:56px;
+
+}
+
+.left h2{
+
+    font-size:1.35rem;
+
+}
+
+.left p{
+
+    font-size:.9rem;
+
+}
+
+#clock{
+
+    font-size:.9rem;
+
+}
+
+#chatArea{
+
+    padding:14px;
+
+    gap:20px;
+
+}
+
+.bot img{
+
+    width:52px;
+
+    height:52px;
+
+}
+
+.bubble{
+
+    padding:18px;
+
+    border-radius:22px;
+
+}
+
+.bubble h3{
+
+    font-size:1.2rem;
+
+}
+
+.bubble p{
+
+    font-size:16px;
+
+}
+
+#message{
+
+    height:60px;
+
+    font-size:16px;
+
+    padding:0 18px;
+
+}
+
+#themeBtn,
+#emoji,
+#voice,
+#send{
+
+    width:56px;
+
+    height:56px;
+
+    min-width:56px;
+
+}
+
+#themeBtn{
+
+    font-size:26px;
+
+}
+
+#emoji{
+
+    font-size:28px;
+
+}
+
+#voice{
+
+    font-size:28px;
+
+}
+
+#send i{
+
+    font-size:22px;
+
+}
+
+.toolbar button{
+
+    font-size:16px;
+
+    min-height:54px;
+
+    padding:14px 18px;
+
+}
+
+}
+
+
+/* ==========================================================
+   LANDSCAPE PHONE
+========================================================== */
+
+@media (max-height:600px) and (orientation:landscape){
+
+header{
+
+    height:80px;
+
+}
+
+.logo{
+
+    width:55px;
+
+    height:55px;
+
+}
+
+footer{
+
+    padding:12px 18px;
+
+}
+
+#message{
+
+    height:56px;
+
+}
+
+.toolbar{
+
+    padding:10px;
+
+}
+
+}

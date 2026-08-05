@@ -1,0 +1,537 @@
+/* ==========================================================
+   NovaAI
+   Base Stylesheet
+   ----------------------------------------------------------
+   Author  : Urishita Arora
+   Version : 1.0
+   Purpose : Global styles, design tokens & utilities
+========================================================== */
+
+
+/* ==========================================================
+   GOOGLE FONT
+========================================================== */
+
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+
+
+/* ==========================================================
+   DESIGN TOKENS
+========================================================== */
+
+:root{
+
+    /* Brand */
+
+    --primary:#4F46E5;
+    --accent:#8B5CF6;
+
+    /* Background */
+
+    --bg1:#EEF2FF;
+    --bg2:#EAF1FF;
+    --bg3:#FFFFFF;
+
+    /* Text */
+
+    --text:#0F172A;
+    --text-light:#64748B;
+
+    /* Glass */
+
+    --glass:rgba(255,255,255,.34);
+    --glass-border:rgba(255,255,255,.28);
+
+    /* Chat */
+
+    --bubble-bot:#FFFFFF;
+
+    --bubble-user:linear-gradient(
+        135deg,
+        #4F46E5,
+        #8B5CF6
+    );
+
+    /* Status */
+
+    --online:#22C55E;
+
+    /* Shadow */
+
+    --shadow:
+        0 25px 60px rgba(15,23,42,.12);
+
+    /* Radius */
+
+    --radius:30px;
+
+    /* Transition */
+
+    --transition:.35s ease;
+
+}
+
+
+/* ==========================================================
+   DARK THEME VARIABLES
+========================================================== */
+
+body.dark{
+
+    color-scheme:dark;
+
+    --bg1:#09090F;
+
+    --bg2:#111827;
+
+    --bg3:#1E293B;
+
+    --text:#F8FAFC;
+
+    --text-light:#CBD5E1;
+
+    --glass:rgba(15,23,42,.55);
+
+    --glass-border:rgba(255,255,255,.08);
+
+    --bubble-bot:#1E293B;
+
+    --bubble-user:linear-gradient(
+        135deg,
+        #5B4CF0,
+        #8B5CF6
+    );
+
+    --shadow:
+        0 25px 60px rgba(0,0,0,.45);
+
+}
+
+
+/* ==========================================================
+   RESET
+========================================================== */
+
+*,
+*::before,
+*::after{
+
+    margin:0;
+    padding:0;
+
+    box-sizing:border-box;
+
+}
+
+
+/* ==========================================================
+   HTML
+========================================================== */
+
+html{
+
+    scroll-behavior:smooth;
+
+}
+
+
+/* ==========================================================
+   BODY
+========================================================== */
+
+body{
+
+    font-family:"Inter",sans-serif;
+
+    min-height:100vh;
+
+    overflow:hidden;
+
+    color:var(--text);
+
+    background:
+
+        radial-gradient(
+            circle at top left,
+            rgba(99,102,241,.35),
+            transparent 42%
+        ),
+
+        radial-gradient(
+            circle at bottom right,
+            rgba(139,92,246,.28),
+            transparent 38%
+        ),
+
+        linear-gradient(
+            135deg,
+            var(--bg1),
+            var(--bg2),
+            var(--bg3)
+        );
+
+    transition:
+
+        background .7s ease,
+
+        color .45s ease;
+
+}
+
+
+/* ==========================================================
+   LINKS
+========================================================== */
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+
+/* ==========================================================
+   BUTTONS
+========================================================== */
+
+button{
+
+    border:none;
+
+    outline:none;
+
+    cursor:pointer;
+
+    font-family:inherit;
+
+    transition:all var(--transition);
+
+}
+
+
+/* ==========================================================
+   INPUT
+========================================================== */
+
+input{
+
+    border:none;
+
+    outline:none;
+
+    font-family:inherit;
+
+}
+
+
+/* ==========================================================
+   IMAGES
+========================================================== */
+
+img{
+
+    display:block;
+
+    max-width:100%;
+
+}
+
+
+/* ==========================================================
+   SCROLLBAR
+========================================================== */
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:transparent;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#A5B4FC;
+
+    border-radius:50px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#6366F1;
+
+}
+
+
+/* ==========================================================
+   TEXT SELECTION
+========================================================== */
+
+::selection{
+
+    background:#6366F1;
+
+    color:white;
+
+}
+
+
+/* ==========================================================
+   AURORA BACKGROUND
+========================================================== */
+
+.aurora{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-5;
+
+    overflow:hidden;
+
+}
+
+
+/* Left Glow */
+
+.aurora::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:700px;
+
+    height:700px;
+
+    left:-180px;
+
+    top:-150px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(79,70,229,.75),
+
+            transparent 70%
+
+        );
+
+    filter:blur(65px);
+
+    will-change:transform;
+
+    animation:floatOne 18s ease-in-out infinite;
+
+}
+
+
+/* Right Glow */
+
+.aurora::after{
+
+    content:"";
+
+    position:absolute;
+
+    width:650px;
+
+    height:650px;
+
+    right:-180px;
+
+    bottom:-180px;
+
+    border-radius:50%;
+
+    background:
+
+        radial-gradient(
+
+            circle,
+
+            rgba(6,182,212,.70),
+
+            transparent 70%
+
+        );
+
+    filter:blur(70px);
+
+    will-change:transform;
+
+    animation:floatTwo 20s ease-in-out infinite;
+
+}
+
+
+/* Center Glow */
+
+body::before{
+
+    content:"";
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:-4;
+
+    background:
+
+        radial-gradient(
+
+            circle at center,
+
+            rgba(124,58,237,.18),
+
+            transparent 60%
+
+        );
+
+}
+
+
+/* ==========================================================
+   FLOAT ANIMATIONS
+========================================================== */
+
+@keyframes floatOne{
+
+    0%{
+
+        transform:
+            translate(0,0)
+            scale(1);
+
+    }
+
+    50%{
+
+        transform:
+            translate(120px,70px)
+            scale(1.18);
+
+    }
+
+    100%{
+
+        transform:
+            translate(0,0)
+            scale(1);
+
+    }
+
+}
+
+@keyframes floatTwo{
+
+    0%{
+
+        transform:
+            translate(0,0)
+            scale(1);
+
+    }
+
+    50%{
+
+        transform:
+            translate(-110px,-70px)
+            scale(1.15);
+
+    }
+
+    100%{
+
+        transform:
+            translate(0,0)
+            scale(1);
+
+    }
+
+}
+
+
+/* ==========================================================
+   UTILITIES
+========================================================== */
+
+.hidden{
+
+    display:none !important;
+
+}
+
+.center{
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+}
+
+.glass{
+
+    background:var(--glass);
+
+    border:1px solid var(--glass-border);
+
+    border-radius:var(--radius);
+
+    backdrop-filter:blur(28px);
+
+    -webkit-backdrop-filter:blur(28px);
+
+    box-shadow:var(--shadow);
+
+    transition:
+
+        background var(--transition),
+
+        border-color var(--transition),
+
+        box-shadow var(--transition);
+
+}
+
+.fade{
+
+    animation:fade .4s ease;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(18px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}

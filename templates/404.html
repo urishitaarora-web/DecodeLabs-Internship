@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>404 • NovaAI</title>
+
+<link rel="icon"
+type="image/x-icon"
+href="{{ url_for('static', filename='images/favicon.ico') }}">
+
+<style>
+
+*{
+
+margin:0;
+padding:0;
+box-sizing:border-box;
+
+}
+
+body{
+
+font-family:Inter,sans-serif;
+
+height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+background:
+linear-gradient(
+135deg,
+#EEF2FF,
+#E0EAFF,
+#F7F9FF
+);
+
+overflow:hidden;
+
+}
+
+.card{
+
+background:rgba(255,255,255,.35);
+
+backdrop-filter:blur(22px);
+
+padding:60px;
+
+border-radius:30px;
+
+text-align:center;
+
+box-shadow:
+0 25px 60px rgba(0,0,0,.12);
+
+max-width:550px;
+
+}
+
+img{
+
+width:100px;
+
+margin:auto;
+
+margin-bottom:25px;
+
+}
+
+h1{
+
+font-size:90px;
+
+color:#4F46E5;
+
+}
+
+h2{
+
+margin-top:10px;
+
+font-size:34px;
+
+}
+
+p{
+
+margin:20px 0;
+
+font-size:20px;
+
+color:#64748B;
+
+line-height:1.7;
+
+}
+
+a{
+
+display:inline-block;
+
+margin-top:15px;
+
+padding:16px 36px;
+
+border-radius:50px;
+
+background:#4F46E5;
+
+color:white;
+
+text-decoration:none;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+a:hover{
+
+transform:translateY(-2px);
+
+background:#4338CA;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="card">
+
+<img src="{{ url_for('static',
+filename='images/nova-avatar.png') }}">
+
+<h1>404</h1>
+
+<h2>Oops!</h2>
+
+<p>
+
+The page you're looking for doesn't exist.
+
+</p>
+
+<a href="/">🏠 Back to NovaAI</a>
+
+</div>
+
+</body>
+
+</html>
