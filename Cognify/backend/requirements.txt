@@ -5,3 +5,4 @@ pandas
 openpyxl
 supabase
 python-dotenv
+clerk-backend-api
