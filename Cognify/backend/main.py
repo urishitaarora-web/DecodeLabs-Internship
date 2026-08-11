@@ -34,7 +34,8 @@ def require_user(request: Request) -> str:
         AuthenticateRequestOptions(
             secret_key=CLERK_SECRET_KEY,
             authorized_parties=[
-                "http://localhost:5173"
+                "http://localhost:5173",
+                 "https://cognify-frontend-bggv.onrender.com",
             ],
             accepts_token=["session_token"],
         ),
