@@ -1,9 +1,0 @@
-fastapi
-uvicorn[standard]
-python-multipart
-pandas
-numpy
-openpyxl
-supabase
-python-dotenv
-clerk-backend-api
