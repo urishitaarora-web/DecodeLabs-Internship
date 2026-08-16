@@ -10,11 +10,11 @@ import {
   UploadCloud,
   WandSparkles,
   X,
-  FileText,
+  FileText
 } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useAuth } from "@clerk/react";
-
+import AnalysisPage from "../pages/AnalysisPage";
 const samples = {
   analysis: {
     icon: BarChart3,
@@ -125,6 +125,7 @@ function DatasetPage() {
 
   const [analysis, setAnalysis] = useState(null);
   const [analyzing, setAnalyzing] = useState(false);
+  const [selectedDatasetId, setSelectedDatasetId] = useState(null);
   const [savedDatasets, setSavedDatasets] = useState([]);
   const [loadingDatasets, setLoadingDatasets] = useState(true);
   const allowedTypes = [".csv", ".xlsx", ".json"];
@@ -182,75 +183,92 @@ useEffect(() => {
     fetchDatasets();
   }
 }, [isLoaded, userId]);
-  const analyzeDataset = async () => {
-    if (!file) return;
-    console.log("Clerk auth:", {
-      isLoaded,
-      userId,
-    });
-    if (!isLoaded) {
-      throw new Error("Authentication is still loading.");
-    }
-    if (!userId) {
-      throw new Error("You must be logged in to save the dataset.");
-    }
+const analyzeDataset = async () => {
+  if (!file) return;
 
-    setAnalyzing(true);
-    setError("");
-    setAnalysis(null);
+  console.log("Clerk auth:", {
+    isLoaded,
+    userId,
+  });
+
+  if (!isLoaded) {
+    setError("Authentication is still loading.");
+    return;
+  }
+
+  if (!userId) {
+    setError("You must be logged in to save the dataset.");
+    return;
+  }
+
+  setAnalyzing(true);
+  setError("");
+  setAnalysis(null);
+
+  try {
+    const token = await getToken();
+
+    // --------------------------------------------------
+    // STEP 1: Analyze dataset
+    // --------------------------------------------------
 
     const formData = new FormData();
     formData.append("file", file);
 
-    try {
-      const token = await getToken();
-
-      const response = await fetch(
-       `${import.meta.env.VITE_API_URL}/analyze-dataset`,
-         {
-         method: "POST",
-          headers: {
-           Authorization: `Bearer ${token}`,
-          },
-          body: formData,
-        }
-      );
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data.detail || "Dataset analysis failed."
-        );
+    const analysisResponse = await fetch(
+      `${import.meta.env.VITE_API_URL}/analyze-dataset`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
       }
+    );
 
-      setAnalysis(data);
+    const data = await analysisResponse.json();
+
+    if (!analysisResponse.ok) {
+      throw new Error(
+        data.detail || "Dataset analysis failed."
+      );
+    }
+
+    setAnalysis(data);
+
+    // --------------------------------------------------
+    // STEP 2: Save dataset
+    // --------------------------------------------------
+
+   const saveFormData = new FormData();
+
+saveFormData.append("file", file);
+
+saveFormData.append(
+  "metadata",
+  JSON.stringify({
+    rows: data.dataset.rows,
+    columns: data.dataset.columns,
+    missing_values: data.dataset.missing_values,
+    missing_percentage: data.dataset.missing_percentage,
+    duplicates: data.dataset.duplicates,
+    data_quality: data.dataset.data_quality,
+    column_types: data.column_types,
+    columns_info: data.columns,
+    status: "Analyzed",
+  })
+);
 
 const saveResponse = await fetch(
   `${import.meta.env.VITE_API_URL}/save-dataset`,
   {
     method: "POST",
+
     headers: {
-      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({
-      filename: data.filename,
-      file_size: file.size,
 
-      rows: data.dataset.rows,
-      columns: data.dataset.columns,
-
-      missing_values: data.dataset.missing_values,
-      missing_percentage: data.dataset.missing_percentage,
-
-      duplicates: data.dataset.duplicates,
-      data_quality: data.dataset.data_quality,
-
-      column_types: data.column_types,
-      columns_info: data.columns,
-
-      status: "Analyzed",
-    }),
+    body: saveFormData,
   }
 );
 
@@ -261,19 +279,30 @@ if (!saveResponse.ok) {
     saveData.detail || "Could not save dataset."
   );
 }
+
+console.log(
+  "Dataset saved successfully:",
+  saveData.dataset
+);
+
+setSelectedDatasetId(
+  saveData.dataset.id
+);
+
 await fetchDatasets();
-    } catch (err) {
 
-      setError(
-        err.message ||
-        "Could not connect to Cognify backend."
-      );
+  } catch (err) {
+    console.error("Dataset processing error:", err);
 
-    } finally {
+    setError(
+      err.message ||
+      "Could not connect to Cognify backend."
+    );
 
-      setAnalyzing(false);
-    }
-  };
+  } finally {
+    setAnalyzing(false);
+  }
+};
   const validateFile = (selectedFile) => {
     if (!selectedFile) return;
 
@@ -587,6 +616,9 @@ export default function WorkspacePage() {
 
   if (page === "datasets") {
     return <DatasetPage />;
+  }
+    if (page === "analysis") {
+    return <AnalysisPage />;
   }
 
   const meta = pageMeta[page] || pageMeta.datasets;
