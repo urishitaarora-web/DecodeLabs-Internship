@@ -17,6 +17,7 @@ CLERK_JWT_KEY = os.getenv("CLERK_JWT_KEY")
 CLERK_AUTHORIZED_PARTY = os.getenv(
     "CLERK_AUTHORIZED_PARTY",
     "http://localhost:5173",
+    "https://cognify-frontend-bggv.onrender.com",
 )
 
 if not CLERK_SECRET_KEY:
