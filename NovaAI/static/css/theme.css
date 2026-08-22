@@ -17,9 +17,10 @@
 
 body,
 .container,
+.sidebar,
+.chat-wrapper,
 header,
 footer,
-.toolbar,
 .bubble,
 button,
 input,
@@ -50,9 +51,16 @@ input,
 
 }
 
+.sidebar{
+
+    background:rgba(255,255,255,.15);
+
+    border-right:1px solid rgba(255,255,255,.18);
+
+}
+
 header,
-footer,
-.toolbar{
+footer{
 
     background:rgba(255,255,255,.08);
 
@@ -89,8 +97,10 @@ footer,
 }
 
 #themeBtn,
+#speakerBtn,
 #emoji,
-#voice{
+#voice,
+.menu-toggle{
 
     background:white;
 
@@ -98,9 +108,9 @@ footer,
 
 }
 
-.toolbar button{
+.sidebar-btn{
 
-    background:rgba(255,255,255,.92);
+    background:rgba(255,255,255,.75);
 
     color:var(--text);
 
@@ -140,9 +150,16 @@ body.dark .container{
 
 }
 
+body.dark .sidebar{
+
+    background:rgba(15,23,42,.45);
+
+    border-right:1px solid rgba(255,255,255,.08);
+
+}
+
 body.dark header,
-body.dark footer,
-body.dark .toolbar{
+body.dark footer{
 
     background:rgba(15,23,42,.28);
 
@@ -181,8 +198,10 @@ body.dark #message::placeholder{
 }
 
 body.dark #themeBtn,
+body.dark #speakerBtn,
 body.dark #emoji,
-body.dark #voice{
+body.dark #voice,
+body.dark .menu-toggle{
 
     background:#1E293B;
 
@@ -190,11 +209,11 @@ body.dark #voice{
 
 }
 
-body.dark .toolbar button{
+body.dark .sidebar-btn{
 
     background:#1E293B;
 
-    color:white;
+    color:#F8FAFC;
 
 }
 
@@ -279,14 +298,16 @@ body.dark .glass{
 ========================================================== */
 
 body.dark #themeBtn:hover,
+body.dark #speakerBtn:hover,
 body.dark #emoji:hover,
-body.dark #voice:hover{
+body.dark #voice:hover,
+body.dark .menu-toggle:hover{
 
     background:#273549;
 
 }
 
-body.dark .toolbar button:hover{
+body.dark .sidebar-btn:hover{
 
     background:#273549;
 

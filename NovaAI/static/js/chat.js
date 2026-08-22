@@ -34,6 +34,34 @@ function saveHistory(){
 }
 
 /* ==========================================================
+   FORMAT MESSAGE (MARKDOWN & HTML SAFETY)
+========================================================== */
+
+function formatMessage(text){
+
+    if(!text) return "";
+
+    let safe = text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+
+    // Bold: **text** or __text__
+    safe = safe.replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>");
+    safe = safe.replace(/__(.+?)__/g, "<strong>$1</strong>");
+
+    // Italic: *text* or _text_
+    safe = safe.replace(/(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)/g, "<em>$1</em>");
+    safe = safe.replace(/(?<!_)_(?!_)(.+?)(?<!_)_(?!_)/g, "<em>$1</em>");
+
+    // Inline code: `code`
+    safe = safe.replace(/`([^`]+)`/g, "<code>$1</code>");
+
+    return safe;
+
+}
+
+/* ==========================================================
    LOAD HISTORY
 ========================================================== */
 
@@ -44,37 +72,16 @@ function loadHistory(){
     if(!saved){
 
         chatArea.innerHTML = `
-
             <div class="bot">
-
                 <img src="/static/images/nova-avatar.png">
-
-                <div class="bubble">
-
+                <div class="bubble welcome-bubble">
                     <h3>Hello 👋</h3>
-
-                    <p>
-
-                        I'm NovaAI.
-
-                        How can I help you today?
-
-                    </p>
-
+                    <p>I'm NovaAI.<br>How can I help you today?</p>
                     <div class="message-footer">
-
-                        <span class="time">
-
-                            ${getCurrentTime()}
-
-                        </span>
-
+                        <span class="time">${getCurrentTime()}</span>
                     </div>
-
                 </div>
-
             </div>
-
         `;
 
         return;
@@ -132,23 +139,12 @@ function createUserMessage(text){
     div.className = "user";
 
     div.innerHTML = `
-
         <div class="bubble">
-
-            <p>${text}</p>
-
+            <p>${formatMessage(text)}</p>
             <div class="message-footer">
-
-                <span class="time">
-
-                    ${getCurrentTime()}
-
-                </span>
-
+                <span class="time">${getCurrentTime()}</span>
             </div>
-
         </div>
-
     `;
 
     chatArea.appendChild(div);
@@ -166,31 +162,16 @@ function createBotMessage(text){
     div.className = "bot";
 
     div.innerHTML = `
-
         <img src="/static/images/nova-avatar.png">
-
         <div class="bubble">
-
-            <p>${text}</p>
-
+            <p>${formatMessage(text)}</p>
             <div class="message-footer">
-
                 <button class="copy-btn">
-
                     <i class="fa-regular fa-copy"></i>
-
                 </button>
-
-                <span class="time">
-
-                    ${getCurrentTime()}
-
-                </span>
-
+                <span class="time">${getCurrentTime()}</span>
             </div>
-
         </div>
-
     `;
 
     chatArea.appendChild(div);
@@ -461,38 +442,17 @@ function clearChat(){
 
     localStorage.removeItem(STORAGE_KEY);
 
-    chatArea.innerHTML=`
-
+    chatArea.innerHTML = `
         <div class="bot">
-
             <img src="/static/images/nova-avatar.png">
-
-            <div class="bubble">
-
+            <div class="bubble welcome-bubble">
                 <h3>Hello 👋</h3>
-
-                <p>
-
-                    I'm NovaAI.
-
-                    How can I help you today?
-
-                </p>
-
+                <p>I'm NovaAI.<br>How can I help you today?</p>
                 <div class="message-footer">
-
-                    <span class="time">
-
-                        ${getCurrentTime()}
-
-                    </span>
-
+                    <span class="time">${getCurrentTime()}</span>
                 </div>
-
             </div>
-
         </div>
-
     `;
 
     scrollBottom();

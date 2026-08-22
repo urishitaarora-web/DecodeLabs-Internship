@@ -82,6 +82,10 @@
 
     <div class="aurora"></div>
 
+    <!-- Mobile Backdrop Overlay -->
+
+    <div id="sidebarOverlay" class="sidebar-overlay" aria-hidden="true"></div>
+
     <!-- ===========================
          MAIN CONTAINER
     ============================ -->
@@ -89,175 +93,229 @@
     <div class="container">
 
         <!-- ===========================
-             HEADER
+             COLLAPSIBLE LEFT SIDEBAR
         ============================ -->
 
-        <header>
+        <aside id="sidebar" class="sidebar" aria-label="NovaAI Navigation" aria-expanded="true">
 
-            <div class="left">
+            <div class="sidebar-header">
 
-                <img
-                    src="{{ url_for('static', filename='images/nova-avatar.png') }}"
-                    class="logo"
-                    alt="NovaAI">
-
-                <div>
-
-                    <h2>NovaAI</h2>
-
-                    <p>
-
-                        <span class="online"></span>
-
-                        Online
-
-                    </p>
-
+                <div class="sidebar-brand">
+                    <img
+                        src="{{ url_for('static', filename='images/nova-avatar.png') }}"
+                        class="sidebar-logo"
+                        alt="NovaAI">
+                    <div class="sidebar-brand-text">
+                        <h3>NovaAI</h3>
+                        <span>Assistant</span>
+                    </div>
                 </div>
 
-            </div>
-
-            <div class="right">
-
-                <div id="clock"></div>
-
                 <button
-                    id="themeBtn"
-                    title="Toggle Theme">
-
-                    🌙
-
-                </button>
-
-                <button
-                    id="speakerBtn"
-                    title="Speaker">
-
-                    🔊
-
+                    id="sidebarClose"
+                    class="sidebar-close-btn"
+                    title="Close Sidebar"
+                    aria-label="Close Sidebar">
+                    <i class="fa-solid fa-xmark"></i>
                 </button>
 
             </div>
 
-        </header>
+            <div class="sidebar-menu">
 
-        <!-- ===========================
-             CHAT AREA
-        ============================ -->
+                <button
+                    id="download"
+                    class="sidebar-btn download-btn"
+                    title="Download Chat"
+                    aria-label="Download Chat">
+                    <i class="fa-solid fa-file-arrow-down"></i>
+                    <span class="sidebar-label">Download Chat</span>
+                </button>
 
-        <main id="chatArea">
-
-            <div class="bot">
-
-                <img
-                    src="{{ url_for('static', filename='images/nova-avatar.png') }}"
-                    alt="Nova">
-
-                <div class="bubble">
-
-                    <h3>Hello 👋</h3>
-
-                    <p>
-
-                        I'm NovaAI.
-
-                        <br><br>
-
-                        How can I help you today?
-
-                    </p>
-
-                </div>
+                <button
+                    id="clear"
+                    class="sidebar-btn clear-btn"
+                    title="Clear Chat"
+                    aria-label="Clear Chat">
+                    <i class="fa-solid fa-trash-can"></i>
+                    <span class="sidebar-label">Clear Chat</span>
+                </button>
 
             </div>
 
-        </main>
-
-        <!-- ===========================
-             TYPING
-        ============================ -->
-
-        <div id="typing">
-
-            <div class="dot"></div>
-
-            <div class="dot"></div>
-
-            <div class="dot"></div>
-
-        </div>
-
-        <!-- ===========================
-             INPUT AREA
-        ============================ -->
-
-        <footer>
-
-            <div class="emoji-container">
+            <div class="sidebar-footer">
 
                 <button
-                    id="emoji"
-                    title="Emoji">
+                    id="sidebarToggle"
+                    class="sidebar-btn toggle-btn"
+                    title="Collapse Sidebar"
+                    aria-label="Collapse Sidebar">
+                    <i class="fa-solid fa-chevron-left" id="toggleIcon"></i>
+                    <span class="sidebar-label">Collapse</span>
+                </button>
 
-                    😊
+            </div>
+
+        </aside>
+
+        <!-- ===========================
+             CHAT WRAPPER (RIGHT SIDE)
+        ============================ -->
+
+        <div class="chat-wrapper">
+
+            <!-- ===========================
+                 HEADER
+            ============================ -->
+
+            <header>
+
+                <div class="left">
+
+                    <button
+                        id="menuToggle"
+                        class="menu-toggle"
+                        title="Toggle Menu"
+                        aria-label="Toggle Menu">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+
+                    <img
+                        src="{{ url_for('static', filename='images/nova-avatar.png') }}"
+                        class="logo"
+                        alt="NovaAI">
+
+                    <div>
+
+                        <h2>NovaAI</h2>
+
+                        <p>
+
+                            <span class="online"></span>
+
+                            Online
+
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="right">
+
+                    <div id="clock"></div>
+
+                    <button
+                        id="themeBtn"
+                        title="Toggle Theme">
+
+                        🌙
+
+                    </button>
+
+                    <button
+                        id="speakerBtn"
+                        title="Speaker">
+
+                        🔊
+
+                    </button>
+
+                </div>
+
+            </header>
+
+            <!-- ===========================
+                 CHAT AREA
+            ============================ -->
+
+            <main id="chatArea">
+
+                <div class="bot">
+
+                    <img
+                        src="{{ url_for('static', filename='images/nova-avatar.png') }}"
+                        alt="Nova">
+
+                    <div class="bubble welcome-bubble">
+
+                        <h3>Hello 👋</h3>
+
+                        <p>I'm NovaAI.<br>How can I help you today?</p>
+
+                    </div>
+
+                </div>
+
+            </main>
+
+            <!-- ===========================
+                 TYPING
+            ============================ -->
+
+            <div id="typing">
+
+                <div class="dot"></div>
+
+                <div class="dot"></div>
+
+                <div class="dot"></div>
+
+            </div>
+
+            <!-- ===========================
+                 INPUT AREA
+            ============================ -->
+
+            <footer>
+
+                <div class="emoji-container">
+
+                    <button
+                        id="emoji"
+                        title="Emoji">
+
+                        😊
+
+                    </button>
+
+                    <div
+                        id="emojiPanel"
+                        class="emoji-panel">
+
+                    </div>
+
+                </div>
+
+                <button
+                    id="voice"
+                    title="Voice Input">
+
+                    🎤
 
                 </button>
 
-                <div
-                    id="emojiPanel"
-                    class="emoji-panel">
+                <input
 
-                </div>
+                    id="message"
 
-            </div>
+                    type="text"
 
-            <button
-                id="voice"
-                title="Voice Input">
+                    placeholder="Ask NovaAI anything..."
 
-                🎤
+                    autocomplete="off"
 
-            </button>
+                    spellcheck="false">
 
-            <input
+                <button
+                    id="send"
+                    title="Send">
 
-                id="message"
+                    <i class="fa-solid fa-paper-plane"></i>
 
-                type="text"
+                </button>
 
-                placeholder="Ask NovaAI anything..."
-
-                autocomplete="off"
-
-                spellcheck="false">
-
-            <button
-                id="send"
-                title="Send">
-
-                <i class="fa-solid fa-paper-plane"></i>
-
-            </button>
-
-        </footer>
-
-        <!-- ===========================
-             TOOLBAR
-        ============================ -->
-
-        <div class="toolbar">
-
-            <button id="download">
-
-                📄 Download Chat
-
-            </button>
-
-            <button id="clear">
-
-                🗑 Clear Chat
-
-            </button>
+            </footer>
 
         </div>
 
